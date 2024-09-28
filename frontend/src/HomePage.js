@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GoogleMap, LoadScript, Circle, Marker } from '@react-google-maps/api';
+import { createRoot } from "react-dom/client";
+import { APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 
 const containerStyle = {
   width: '100vw',
@@ -18,13 +19,13 @@ const detailBox = {
   justifyContent: 'center',
   alignItems: 'center',
   borderRadius: '5px',
-}
+};
 
 const text = {
   padding: '5px',
   fontSize: '20px',
   borderBottom: '1px gray solid'
-}
+};
 
 const radiusInMeters = 8046.72;
 
@@ -35,43 +36,40 @@ const fallbackPosition = {
 };
 
 const HomePage = () => {
-  const position= fallbackPosition;
+  const position = fallbackPosition;
   const error = null;
+
   console.log("Current position 1:", position);
 
-
   return (
-    <div style={{position: 'relative'}}>
-      <LoadScript googleMapsApiKey="AIzaSyABdQf3ttPoUcYqIFNhRzgL3V-zOBNbUx0">
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={position}
-          zoom={15}
+    <APIProvider
+      apiKey="AIzaSyBWLEgti7qsaIbWi-0sHdb-nxkwgC-AgkU"
+      onLoad={() => console.log('Maps API has loaded.')}
+    >
+      <div style={{ position: 'relative' }}>
+        <Map
+          defaultZoom={15}
+          defaultCenter={position}
+
         >
-          <Marker position= {position} />
-          <Circle
-            center={position}
-            radius={radiusInMeters}
-          />
-        </GoogleMap>
-      </LoadScript>
-      {null}
+        </Map>
 
-      <div style={detailBox}>
-        <p style={text}>Traffic Congestion: None</p>
-        <p style={text}>Traffic Meter: None</p>
-        <p style={text}>Weather: None</p>
-        <p style={text}>Average Speed: None</p>
+        {null}
 
-        <div style={{display: 'flex', justifyContent: 'center', paddingTop: '15px'}}>
-          <Link to={'/table'}> More details </Link>
+        <div style={detailBox}>
+          <p style={text}>Traffic Congestion: None</p>
+          <p style={text}>Traffic Meter: None</p>
+          <p style={text}>Weather: None</p>
+          <p style={text}>Average Speed: None</p>
+
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '15px' }}>
+            <Link to={'/table'}>More details</Link>
+          </div>
         </div>
-
       </div>
-    </div>
-
-
+    </APIProvider>
   );
 };
+
 
 export default HomePage;
