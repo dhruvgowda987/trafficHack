@@ -28,12 +28,12 @@ const text = {
 const position = { lat: 33.7713056340146, lng: -84.39006321316229 };
 const initialPositions = [
   {
-    id: 1,
+    id: 'CAM123',
     position: { lat: 33.7713056340146, lng: -84.39006321316229 },
     info: "This is the first marker's info window."
   },
   {
-    id: 2,
+    id: 'CAM124',
     position: { lat: 33.7723056340146, lng: -84.39106321316229 }, // Slightly different position
     info: "This is the second marker's info window."
   }
