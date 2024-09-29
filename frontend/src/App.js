@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "./HomePage";
-import SimpleTable from "./SimpleTable";
+import AvgCarsChart from "./AvgCarsChart";
 import MapPage from "./Map"
 import TablePage from "./TablePage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';

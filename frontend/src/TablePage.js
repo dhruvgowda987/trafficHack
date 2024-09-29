@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import SimpleTable from './SimpleTable'; // Adjust the path as needed
+import AvgCarsChart from './AvgCarsChart'; // Adjust the path as needed
+import CarsMChart from './CarsMChart';
+import CarsYChart from './CarsYChart';
 import {useSearchParams} from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
 
 const TablePage = () => {
     const { markerId } = useParams();
@@ -68,9 +71,20 @@ const TablePage = () => {
 
   return (
     <div>
-      <h1>Marker Details</h1>
-      <p>Selected Marker ID: {markerId}</p>
-      <SimpleTable />
+      
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+      <h1>Traffic Stats</h1>
+      <p>Selected Camera ID: {markerId}</p>
+        <div style={{width: '45%', padding: '2%'}}>
+            <AvgCarsChart avgCarsH={avgcarH} />
+        </div>
+        <div style={{width: '45%', padding: '2%'}}>
+            <CarsMChart carsM={carsM} />
+        </div>
+        <div style={{width: '45%', padding: '2%'}}>
+            <CarsYChart carsY={carsY} />
+        </div>
+        </div>
     </div>
   );
 };
