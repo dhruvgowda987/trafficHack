@@ -1,24 +1,17 @@
 import React, { useCallback, useState } from 'react';
 import { APIProvider, Map, AdvancedMarker, useMap, InfoWindow } from '@vis.gl/react-google-maps';
 import { Link, useNavigate } from "react-router-dom";
+import VideoPlayer from "./VideoPlayer";
+
+
+
 
 const containerStyle = {
   width: '100vw', // Full viewport width
   height: '100vh', // Full viewport height
 };
 
-const detailBox = {
-  position: 'absolute',
-  top: '10px',
-  right: '10px',
-  width: '20vw',
-  height: '20vw',
-  backgroundColor: 'white',
-  padding: "15px",
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderRadius: '5px',
-};
+
 
 const text = {
   padding: '5px',
@@ -43,7 +36,6 @@ const initialPositions = [
 const MapWithMarker = () => {
   const map = useMap(); // Access map object
   const [infoWindowOpenId, setInfoWindowOpenId] = useState(null); // State to handle InfoWindow visibility
-  const navigate = useNavigate(); // Get the navigate function
 
   const handleMarkerClick = useCallback((id, position) => {
     if (!map) return;
@@ -68,6 +60,7 @@ const MapWithMarker = () => {
             >
               <div>
                 <h3>Camera Location {marker.id}</h3>
+                {infoWindowOpenId === marker.id && <VideoPlayer />}
                 <p style={text}>Traffic Congestion: None</p>
                 <p style={text}>Traffic Meter: None</p>
                 <p style={text}>Weather: None</p>
@@ -88,7 +81,7 @@ const MapPage = () => {
   return (
       <div style={containerStyle}>
       <APIProvider
-        apiKey={'AIzaSyBWLEgti7qsaIbWi-0sHdb-nxkwgC-AgkU'}
+        apiKey='AIzaSyBWLEgti7qsaIbWi-0sHdb-nxkwgC-AgkU'
         onLoad={() => console.log('Maps API has loaded.')}
       >
         <Map

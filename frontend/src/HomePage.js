@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createRoot } from "react-dom/client";
 import { APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const containerStyle = {
   width: '100vw',
@@ -43,7 +44,7 @@ const HomePage = () => {
 
   return (
     <APIProvider
-      apiKey="AIzaSyBWLEgti7qsaIbWi-0sHdb-nxkwgC-AgkU"
+      apiKey={apiKey}
       onLoad={() => console.log('Maps API has loaded.')}
     >
       <div style={{ position: 'relative' }}>

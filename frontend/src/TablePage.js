@@ -8,17 +8,17 @@ const TablePage = () => {
     const { markerId } = useParams();
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state
-    const [avgcarH, setavgcarH] = useState({})
+    const [avgcarsH, setavgcarsH] = useState({})
     const [carsY, setcarsY] = useState({})
     const [carsM, setcarsM] = useState({})
 
     useEffect(() => {
-        const fetchavgcarH = async () => {
+        const fetchavgcarsH = async () => {
             try {
                 setLoading(true); // Set loading state
                 const response = await axios.get(`http://127.0.0.1:5000/average-cars-hourly?camera_id=${markerId}`);
                 console.log(response.data);
-                setavgcarH(response.data);
+                setavgcarsH(response.data);
             } catch (err) {
                 setError(err); // Set error if the API call fails
             } finally {
@@ -52,7 +52,7 @@ const TablePage = () => {
             }
         };
 
-        fetchavgcarH();
+        fetchavgcarsH();
         fetchcarsY();
         fetchcarsM();
     }, [markerId]); // Dependency array
