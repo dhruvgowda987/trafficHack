@@ -2,6 +2,7 @@ import React from "react";
 import HomePage from "./HomePage";
 import SimpleTable from "./SimpleTable";
 import MapPage from "./Map"
+import TablePage from "./TablePage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/table" element={<SimpleTable />} />
+                <Route path="/table/:markerId" element={<TablePage />} />
                 <Route path="/map" element={<MapPage />} />
             </Routes>
         </BrowserRouter>

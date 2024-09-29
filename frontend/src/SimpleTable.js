@@ -1,7 +1,8 @@
 import React from 'react';
 
-const SimpleTable = (props) => {
+const SimpleTable = () => {
   // Example data for the table
+
   const data = [
     { name: 'John Doe', age: 28, city: 'New York' },
     { name: 'Jane Smith', age: 32, city: 'Los Angeles' },

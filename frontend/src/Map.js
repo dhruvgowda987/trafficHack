@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { APIProvider, Map, AdvancedMarker, useMap, InfoWindow } from '@vis.gl/react-google-maps';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const containerStyle = {
   width: '100vw', // Full viewport width
@@ -43,6 +43,7 @@ const initialPositions = [
 const MapWithMarker = () => {
   const map = useMap(); // Access map object
   const [infoWindowOpenId, setInfoWindowOpenId] = useState(null); // State to handle InfoWindow visibility
+  const navigate = useNavigate(); // Get the navigate function
 
   const handleMarkerClick = useCallback((id, position) => {
     if (!map) return;
@@ -72,7 +73,8 @@ const MapWithMarker = () => {
                 <p style={text}>Weather: None</p>
                 <p style={text}>Average Speed: None</p>
 
-                <Link to={'/table'}>More details</Link>
+                <Link to={`/table/${marker.id}`}>More details</Link>
+
               </div>
             </InfoWindow>
           )}
@@ -84,7 +86,7 @@ const MapWithMarker = () => {
 
 const MapPage = () => {
   return (
-    <div style={containerStyle}>
+      <div style={containerStyle}>
       <APIProvider
         apiKey={'AIzaSyBWLEgti7qsaIbWi-0sHdb-nxkwgC-AgkU'}
         onLoad={() => console.log('Maps API has loaded.')}
